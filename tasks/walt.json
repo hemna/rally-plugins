@@ -1,0 +1,16 @@
+{
+    "CinderWalt.create_and_delete_volumes": [
+        {
+            "args": {
+                "size": 1
+            },
+            "runner": {
+                "type": "constant",
+                "times": 10,
+                "concurrency":10
+            },
+            "context": {
+            }
+        },
+    ]
+}
