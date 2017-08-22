@@ -6,10 +6,19 @@
             },
             "runner": {
                 "type": "constant",
-                "times": 10,
+                "times": 100,
                 "concurrency":10
             },
             "context": {
+                "users": {
+                     "tenants": 1,
+                     "users_per_tenant": 3
+                },
+                "quotas": {
+                    "cinder": {
+                        "volumes": 10000
+                    }
+                }
             }
         },
     ]
