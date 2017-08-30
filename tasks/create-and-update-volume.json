@@ -1,0 +1,34 @@
+{
+    "CinderVolumes.create_and_update_volume": [
+        {
+            "args": {
+                "create_volume_kwargs": {},
+                "update_volume_kwargs": {
+                    "description": "desc_updated"
+                 },
+                "size": 1
+            },
+            "runner": {
+                "type": "constant",
+                "times": 100,
+                "concurrency": 5
+            },
+            "context": {
+                "users": {
+                    "tenants": 1,
+                    "users_per_tenant": 1
+                },
+                "quotas": {
+                    "cinder": {
+                        "volumes": 10000
+                    }
+                }
+            },
+            "sla": {
+                "failure_rate": {
+                    "max": 0
+                }
+            }
+        }
+    ]
+}

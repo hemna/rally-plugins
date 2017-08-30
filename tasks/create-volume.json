@@ -1,0 +1,30 @@
+{
+    "CinderVolumes.create_volume": [
+        {
+            "args": {
+                "size": 1
+            },
+            "runner": {
+                "type": "constant",
+                "times": 100,
+                "concurrency": 5
+            },
+            "context": {
+                "users": {
+                    "tenants": 2,
+                    "users_per_tenant": 2
+                },
+                "quotas": {
+                    "cinder": {
+                        "volumes": 10000
+                    }
+                }
+            },
+            "sla": {
+                "failure_rate": {
+                    "max": 0
+                }
+            }
+        },
+    ]
+}

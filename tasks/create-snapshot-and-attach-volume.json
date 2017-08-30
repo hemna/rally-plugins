@@ -1,0 +1,45 @@
+{% set flavor_name = flavor_name or "m1.tiny" %}
+{
+    "CinderVolumes.create_snapshot_and_attach_volume": [
+        {
+            "args": {
+                "volume_type": "3pariscsi",
+                "size": {
+                    "min": 1,
+                    "max": 5
+                }
+            },
+            "runner": {
+                "type": "constant",
+                "times": 25,
+                "concurrency": 4
+            },
+            "context": {
+                "users": {
+                    "tenants": 2,
+                    "users_per_tenant": 1
+                },
+                "quotas": {
+                    "cinder": {
+                        "volumes": 10000,
+                        "snapshots": 10000,
+                    }
+                },
+                "servers": {
+                    "image": {
+                        "name": "^cirros.*-disk$"
+                    },
+                    "flavor": {
+                        "name": "{{flavor_name}}"
+                    },
+                    "servers_per_tenant": 2
+                }
+            },
+            "sla": {
+                "failure_rate": {
+                    "max": 0
+                }
+            }
+        }
+    ]
+}
